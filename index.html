@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naresh | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Base Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 100%;
+    }
+
+    @media (max-width: 480px) {
+      html {
+        font-size: 90%;
+      }
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #111;
+      overflow-x: hidden;
+      padding-top: 80px;
+    }
+
+    /* Navbar */
+    .navbar {
+      width: 100%;
+      padding: 20px 40px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #7e826d;
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 80px 10%;
+      min-height: 100vh;
+    }
+
+    .hero-left {
+      flex: 1 1 500px;
+      z-index: 1;
+    }
+
+    .hero-left .tagline {
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    .hero-left h1 {
+      font-size: clamp(2.2rem, 6vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #111;
+    }
+
+    .hero-left h1 span {
+      color: #a5a488;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn.primary {
+      background: #999;
+      color: #fff;
+    }
+
+    .btn.outline {
+      border: 2px solid #999;
+      color: #999;
+    }
+
+    .hero-right {
+      flex: 1 1 400px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 0;
+    }
+
+    .hero-right img {
+      width: 550px;
+      height: 550px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .bg-skew {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120%;
+      height: 100%;
+      background: #f0f0f0;
+      transform: skewX(-15deg);
+      z-index: -1;
+    }
+
+    /* About Section */
+    .about-section {
+      padding: 60px 20px;
+      background: #f9f9f9;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .about-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-content {
+      flex: 1;
+    }
+
+    .about-content h2 {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      margin-bottom: 15px;
+    }
+
+    .about-content p {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .about-details p {
+      margin: 6px 0;
+    }
+
+    .interests {
+      margin-top: 15px;
+    }
+
+    .interests span {
+      display: inline-block;
+      margin-right: 15px;
+      background: #e0e0e0;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    /* Skills Section */
+    .skills-section {
+      background: #f4f4f4;
+      padding: 60px 0;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .skills-section h2 {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      margin-bottom: 40px;
+      font-weight: 700;
+    }
+
+    .skills-track {
+      display: flex;
+      gap: 20px;
+      justify-content: center; /* center the skills */
+      flex-wrap: wrap; /* allow wrapping on smaller screens */
+      width: 100%;
+    }
+
+    .skill-card {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 20px 15px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s;
+      width: 160px;
+      flex: 0 0 auto;
+    }
+
+    .skill-card:hover {
+      transform: scale(1.05);
+    }
+
+    .skill-card h4 {
+      font-size: 18px;
+      color: #333;
+      font-weight: 600;
+      margin: 10px 0 4px;
+    }
+
+    .level-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #777;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 80px 20px;
+      background: #f5f5f5;
+      text-align: center;
+    }
+
+    .contact-section .container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .contact-form {
+      margin-top: 30px;
+      padding: 0 10px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+      font-size: 16px;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn.primary {
+      background: #111;
+      color: #fff;
+    }
+
+    .btn.primary:hover {
+      background: #333;
+    }
+
+    .btn.outline {
+      border: 2px solid #111;
+      color: #111;
+    }
+
+    .btn.outline:hover {
+      background: #111;
+      color: #fff;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #111;
+      color: #fff;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .footer h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .social-icons {
+      margin: 20px 0;
+    }
+
+    .social-icons a {
+      color: #fff;
+      font-size: 20px;
+      margin: 0 10px;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #1da1f2;
+    }
+
+    .footer .copyright {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #bbb;
+    }
+
+    /* Responsive Navbar */
+    @media (max-width: 991px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 60px 5%;
+      }
+
+      .navbar {
+        padding: 15px 20px;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: #fff;
+        flex-direction: column;
+        width: 200px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 15px 0;
+        display: none;
+      }
+
+      .nav-links li {
+        margin: 10px 0;
+        text-align: center;
+      }
+
+      #menu-toggle:checked+.menu-icon+.nav-links {
+        display: flex;
+      }
+
+      .menu-icon {
+        display: block;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .about-grid {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .projects-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .project-card {
+        width: 95%;
+        height: 220px;
+      }
+
+      .footer h3 {
+        font-size: 20px;
+      }
+
+      .contact-form .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">NARESH VARMA S</div>
+    <input type="checkbox" id="menu-toggle" hidden>
+    <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <p class="tagline">#</p>
+      <h1>Hi, I am <span>Naresh varma</span> <br>I design and build innovative electronic circuits and embedded systems.</h1>
+      <div class="buttons">
+        <a href="#" class="btn primary">Hire me</a>
+        <a href="#" class="btn outline">Download CV</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <h5 class="section-subtitle">MY INTRODUCTION</h5>
+          <h2>About Me</h2>
+          <p>
+            I'm Naresh Varma, an electronics and hardware developer from Tamil Nadu.
+            I enjoy designing and building real-world electronic circuits and embedded systems.
+            Skilled in circuit design, PCB design, soldering, and testing using tools like Proteus, KiCad, and Multisim.
+            Created projects like audio amplifiers, sensor-based systems, and automation prototypes.
+            I'm passionate about innovation, circuit optimization, and practical problem-solving.
+            Looking to grow in a tech-driven hardware team and learn new technologies every day.
+          </p>
+          <p><em>“Innovation is intelligence made tangible. Circuits bring it to life.”</em></p>
+          <div class="about-details">
+            <p><strong>Name:</strong> Naresh varma S</p>
+            <p><strong>Date of birth:</strong> December 13, 2006</p>
+            <p><strong>Address:</strong> Aravakurichi, karur, Tamil Nadu, India</p>
+            <p><strong>Zip code:</strong> 639201</p>
+            <p><strong>Email:</strong> nareshvarma1416@gmail.com</p>
+            <p><strong>Phone:</strong> +91-7092983024</p>
+          </div>
+          <div class="interests">
+            <span><i class="fas fa-music"></i> Music</span>
+            <span><i class="fas fa-plane"></i> Travel</span>
+            <span><i class="fas fa-film"></i> Movie</span>
+            <span><i class="fas fa-futbol"></i> Sports</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="skills-section">
+    <h2>My Skills</h2>
+    <div class="skills-track">
+      <div class="skill-card">
+        <h4>PCB Design & Layout</h4>
+        <div class="level-label">85%</div>
+      </div>
+      <div class="skill-card">
+        <h4>Embedded Systems</h4>
+        <div class="level-label">90%</div>
+      </div>
+      <div class="skill-card">
+        <h4>Sensor & Actuator Integration</h4>
+        <div class="level-label">80%</div>
+      </div>
+      <div class="skill-card">
+        <h4>Analog & Digital Electronics</h4>
+        <div class="level-label">85%</div>
+      </div>
+      <div class="skill-card">
+        <h4>Python</h4>
+        <div class="level-label">95%</div>
+      </div>
+      <div class="skill-card">
+        <h4>C</h4>
+        <div class="level-label">95%</div>
+      </div>
+      <div class="skill-card">
+        <h4>Arduino IDE & Tools</h4>
+        <div class="level-label">90%</div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
